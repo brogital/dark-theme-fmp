@@ -3,195 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Авито | Финансовый маркетплейс</title>
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script src="https://cdn.jsdelivr.net/npm/eruda-network"></script>
-    
-    <!-- Динамический фавикон -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
-    
-    <style>
-        :root {
-            --primary-color: #63B5F6;
-            --bg-light: #ffffff;
-            --text-light: #333333;
-            --bg-dark: #1a1a1a;
-            --text-dark: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: 'Arial', sans-serif;
-            transition: var(--transition);
-            min-height: 100vh;
-        }
-
-        /* Динамические стили для тем */
-        body.light {
-            background-color: var(--bg-light);
-            color: var(--text-light);
-        }
-
-        body.dark {
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-        }
-
-        .header {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, #63B5F6, #4A90E2);
-            color: white;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: rgba(99, 181, 246, 0.1);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 181, 246, 0.2);
-            transition: var(--transition);
-        }
-
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-
-        button {
-            background: #63B5F6;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 2px 8px rgba(99, 181, 246, 0.3);
-        }
-
-        button#toggleTheme {
-            background: #4A90E2;
-        }
-
-        .theme-status {
-            text-align: center;
-            font-size: 1.2rem;
-            padding: 1rem;
-            background: rgba(99, 181, 246, 0.15);
-            border-radius: 10px;
-            transition: var(--transition);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-    </style>
+    <title>Финансовые услуги | Авито</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="light">
-    <div class="header">
-        <h1>Авито — Умные финансы 🚀</h1>
-        <p>Покупай выгодно, продавай быстро!</p>
+<body>
+    <div class="container">
+        <div class="theme-toggle" onclick="toggleTheme()">🌞</div>
+        
+        <h1>Финансовые услуги 💸</h1>
+        <p class="subtitle">Одобрение за 5 минут · Выгодные условия · Онлайн-оформление</p>
+
+        <div class="services-grid">
+            <!-- Все 8 услуг -->
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">🛒</span>
+                <h3 class="service-title">Товары в рассрочку</h3>
+                <p class="service-desc">Заберите товар сегодня, платите 3-12 месяцев</p>
+                <div class="ctr-booster">
+                    <span class="timer">🔥 Льготный период 45 дней</span>
+                    <div class="badge">Топ-2024</div>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">💸</span>
+                <h3 class="service-title">Экспресс-займы</h3>
+                <p class="service-desc">До 500 000 ₽ за 9 минут даже с просрочками</p>
+                <div class="ctr-booster">
+                    <span class="timer">⏳ Ставка 0% новым клиентам</span>
+                    <div class="users-count badge">12K+ выдач</div>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">🏦</span>
+                <h3 class="service-title">Кредит на любые цели</h3>
+                <p class="service-desc">Заполните анкету и выбирайте из предложений банков</p>
+                <div class="ctr-booster">
+                    <span class="timer">🎯 Персональные условия</span>
+                    <div class="badge users-count">25 банков</div>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">📈</span>
+                <h3 class="service-title">Накопительный счёт</h3>
+                <p class="service-desc">Можно снимать и класть деньги в любой момент</p>
+                <div class="ctr-booster">
+                    <span class="timer">💰 До 8% годовых</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">🚗</span>
+                <h3 class="service-title">Автокредит</h3>
+                <p class="service-desc">Без первого взноса, деньги придут в тот же день</p>
+                <div class="ctr-booster">
+                    <span class="timer">⚡ Одобрение за 15 минут</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">📄</span>
+                <h3 class="service-title">ОСАГО</h3>
+                <p class="service-desc">Без переплат — по ценам страховых компаний</p>
+                <div class="ctr-booster">
+                    <span class="timer">🕒 Оформление за 7 минут</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">🏠</span>
+                <h3 class="service-title">Ипотека</h3>
+                <p class="service-desc">Одна заявка сразу в 25 банков и скидка на ставку до 0,9%</p>
+                <div class="ctr-booster">
+                    <span class="timer">🔑 Первый взнос от 10%</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="showPopup()">
+                <span class="service-emoji">🛡️</span>
+                <h3 class="service-title">Страхование ипотеки</h3>
+                <p class="service-desc">Оформление за 10 минут, полис подходит всем банкам</p>
+                <div class="ctr-booster">
+                    <span class="timer">📉 Снижение ставки на 0,5%</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <div class="feature-card">
-            <h2>🌟 Преимущества Авито</h2>
-            <p>• Интеллектуальный подбор предложений<br>
-               • Гарантия безопасных сделок<br>
-               • Мгновенные уведомления<br>
-               • Аналитика рынка в реальном времени</p>
+    <div id="overlay">
+        <div class="popup">
+            <h2>Скоро всё будет! 😊</h2>
+            <p>Сервис находится в разработке, попробуйте позже.</p>
+            <button onclick="closePopup()">Хорошо</button>
         </div>
+    </div>
 
-        <div class="theme-status" id="themeStatus">
-            Текущая тема: ☀️ Светлая
-        </div>
-
-        <div class="button-group">
-            <button onclick="initEruda()">
-                <span>🛠️</span> Консоль
-            </button>
-            <button id="toggleTheme" onclick="toggleTheme()">
-                <span>🎨</span> Сменить тему
-            </button>
-        </div>
-
-        <div class="feature-card">
-            <h3>📊 Статистика за сегодня</h3>
-            <p>• 1 534 890 активных сделок<br>
-               • 65 432 новых предложения<br>
-               • 92% положительных отзывов</p>
-        </div>
+    <div class="live-notification" id="liveNotify">
+        Иван из Москвы только что получил одобрение!
     </div>
 
     <script>
-        // Инициализация темы
-        let currentTheme = localStorage.getItem('theme') || 
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        
-        // Применение темы
-        function applyTheme() {
-            document.body.className = currentTheme;
-            document.getElementById('themeStatus').innerHTML = 
-                `Текущая тема: ${currentTheme === 'dark' ? '🌙 Тёмная' : '☀️ Светлая'}`;
-            
-            // Динамическое изменение фавикона
-            const favicon = document.querySelector('link[rel="icon"]');
-            favicon.href = currentTheme === 'dark' 
-                ? 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>'
-                : 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☀️</text></svg>';
+        // Тема
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const themeToggle = document.querySelector('.theme-toggle');
+            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '🌚' : '🌞';
         }
 
-        // Переключение темы
-        function toggleTheme() {
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('theme', currentTheme);
-            applyTheme();
-            console.log(`Тема изменена на: ${currentTheme}`);
+        // Попап
+        function showPopup() {
+            document.getElementById('overlay').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // Анимация карточек
+        function animateCards() {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 100);
+            });
+        }
+
+        // Уведомления
+        const messages = [
+            "Ольга из Казани оформила кредит!",
+            "Сергей получил 500 000 ₽!",
+            "Ещё +3 одобрения за 5 минут",
+            "Алексей оформил ОСАГО за 6 минут"
+        ];
+
+        function showNotification() {
+            const notify = document.getElementById('liveNotify');
+            notify.textContent = messages[Math.floor(Math.random() * messages.length)];
+            notify.style.display = 'block';
+            setTimeout(() => notify.style.display = 'none', 5000);
         }
 
         // Инициализация
-        applyTheme();
-        console.log('Инициализация завершена. Текущая тема:', currentTheme);
+        window.addEventListener('DOMContentLoaded', () => {
+            animateCards();
+            setInterval(showNotification, 10000);
+        });
 
-        // Eruda Console
-        let erudaInitialized = false;
-        function initEruda() {
-            if (!erudaInitialized) {
-                eruda.init();
-                eruda.add(erudaNetwork);
-                eruda.show();
-                erudaInitialized = true;
-                console.log('Консоль разработчика активирована!');
-            }
-        }
-
-        // Автоматическая инициализация в локальном окружении
-        if (window.location.hostname === 'localhost') {
-            initEruda();
-        }
+        document.addEventListener('click', function(e) {
+            if(e.target.id === 'overlay') closePopup();
+        });
     </script>
 </body>
 </html>
