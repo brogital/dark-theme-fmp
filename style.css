@@ -1,16 +1,18 @@
-
 :root {
     --primary: #2A81DD;
     --bg: #ffffff;
     --text: #333333;
     --avito-blue: #2A81DD;
     --avito-gray: #F8F9FA;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --gradient: linear-gradient(135deg, #2A81DD 0%, #1C5BB3 100%);
 }
 
 .dark-theme {
     --bg: #1A1A1A;
     --text: #FFFFFF;
     --avito-gray: #2A2A2A;
+    --shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -19,7 +21,7 @@ body {
     color: var(--text);
     margin: 0;
     min-height: 100vh;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .container {
@@ -35,9 +37,27 @@ body {
     cursor: pointer;
     font-size: 1.5rem;
     z-index: 1000;
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     padding: 8px;
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+h1 {
+    color: var(--avito-blue);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
 }
 
 .services-grid {
@@ -49,19 +69,16 @@ body {
 
 .service-card {
     background: var(--avito-gray);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.5rem;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
 }
-/* Добавьте эти стили в раздел с service-card */
-
 
 .service-card.visible {
     opacity: 1;
@@ -69,46 +86,55 @@ body {
 }
 
 .service-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 16px rgba(42,129,221,0.1);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
 }
 
 .service-emoji {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
     display: block;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-emoji {
+    transform: scale(1.1);
 }
 
 .service-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     margin-bottom: 0.75rem;
     color: var(--avito-blue);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .service-desc {
     font-size: 0.9rem;
     color: #666;
-    min-height: 60px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
 }
 
 .ctr-booster {
     padding: 0.75rem;
-    background: rgba(42,129,221,0.08);
+    background: rgba(42, 129, 221, 0.08);
     border-radius: 8px;
     font-size: 0.85rem;
-    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .badge {
     display: inline-block;
     padding: 4px 8px;
-    background: #4CAF50;
+    background: var(--primary);
     color: white;
     border-radius: 4px;
     font-size: 0.75rem;
-    margin-top: 8px;
+    font-weight: 500;
+    text-align: center;
 }
 
 .timer {
@@ -120,13 +146,39 @@ body {
     background: #2196F3;
 }
 
+/* Анимация появления карточек */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+.service-card:nth-child(5) { animation-delay: 0.5s; }
+.service-card:nth-child(6) { animation-delay: 0.6s; }
+.service-card:nth-child(7) { animation-delay: 0.7s; }
+.service-card:nth-child(8) { animation-delay: 0.8s; }
+
+/* Попап */
 #overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: center;
     align-items: center;
@@ -136,43 +188,47 @@ body {
 .popup {
     background: var(--bg);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 16px;
     text-align: center;
     max-width: 400px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
 }
 
 .popup button {
-    background: var(--avito-blue);
+    background: var(--primary);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     margin-top: 1rem;
+    transition: background 0.3s ease;
 }
 
+.popup button:hover {
+    background: #1C5BB3;
+}
+
+/* Уведомления */
 .live-notification {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: var(--avito-blue);
+    background: var(--primary);
     color: white;
     padding: 12px 20px;
     border-radius: 8px;
     display: none;
     font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
+    animation: slideIn 0.5s ease;
 }
 
-h1 {
-    color: var(--avito-blue);
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.subtitle {
-    color: #666;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
