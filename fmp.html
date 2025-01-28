@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авито | Проверка темы</title>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda-network"></script>
+    <style>
+        :root {
+            --primary-color: #63B5F6;
+            --bg-light: #ffffff;
+            --text-light: #333333;
+            --bg-dark: #1a1a1a;
+            --text-dark: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: var(--bg-light);
+                color: var(--text-light);
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: var(--bg-dark);
+                color: var(--text-dark);
+            }
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #63B5F6, #4A90E2);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(99, 181, 246, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 181, 246, 0.2);
+        }
+
+        button {
+            background: #63B5F6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            display: block;
+            margin: 2rem auto;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-status {
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 1rem;
+            background: rgba(99, 181, 246, 0.15);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Авито — твой финансовый помощник! 💰</h1>
+        <p>Покупай, продавай и находи лучшие предложения</p>
+    </div>
+
+    <div class="container">
+        <div class="feature-card">
+            <h2>🌟 Почему Авито?</h2>
+            <p>• Безопасные сделки с защитой покупателя<br>
+               • Миллионы проверенных объявлений<br>
+               • Мгновенные уведомления о новых предложениях<br>
+               • Умный поиск с AI-подбором</p>
+        </div>
+
+        <div class="theme-status" id="themeStatus">
+            Определение текущей темы...
+        </div>
+
+        <button onclick="initEruda()">Открыть консоль разработчика 🛠️</button>
+
+        <div class="feature-card">
+            <h3>📈 Сегодня на Авито:</h3>
+            <p>• 1 234 567 активных объявлений<br>
+               • 89 345 новых предложений за сутки<br>
+               • Среднее время продажи — 3 дня</p>
+        </div>
+    </div>
+
+    <script>
+        // Определение текущей темы
+        const themeStatus = document.getElementById('themeStatus');
+        const updateThemeStatus = () => {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            themeStatus.innerHTML = `Текущая тема: <strong>${isDark ? '🌙 Тёмная' : '☀️ Светлая'}</strong>`;
+        };
+
+        // Обновляем статус при изменении темы
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeStatus);
+        updateThemeStatus();
+
+        // Инициализация Eruda
+        let erudaInitialized = false;
+        function initEruda() {
+            if (!erudaInitialized) {
+                eruda.init();
+                eruda.add(erudaNetwork);
+                eruda.show();
+                erudaInitialized = true;
+                console.log('Добро пожаловать в консоль Авито!');
+                console.log('Проверка сетевых запросов доступна во вкладке "Network"');
+                
+                // Пример сетевого запроса
+                fetch('https://api.avito.ru/ping')
+                    .then(response => console.log('Пинг Авито:', response.status));
+            }
+        }
+
+        // Авто-инициализация Eruda для локального тестирования
+        if (location.hostname === 'localhost') {
+            initEruda();
+        }
+    </script>
+</body>
+</html>
